@@ -1,0 +1,41 @@
+.beams-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.beams-container .beam {
+  position: absolute;
+  left: -20%;
+  will-change: transform;
+  animation: beam-drift linear infinite;
+}
+
+.beams-container .beam::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--beam-color, rgba(255, 255, 255, 0.35)) 25%,
+    var(--beam-color, rgba(255, 255, 255, 0.6)) 50%,
+    var(--beam-color, rgba(255, 255, 255, 0.35)) 75%,
+    transparent 100%
+  );
+  filter: blur(3px);
+  border-radius: 2px;
+}
+
+@keyframes beam-drift {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(140vw) translateY(0);
+  }
+}
